@@ -1,0 +1,16 @@
+[gd_resource type="Shader" format=2]
+
+[resource]
+code = "shader_type canvas_item;
+
+uniform float pixel_clamp = 0.004;
+
+void fragment() 
+{
+	vec2 uv = SCREEN_UV;
+	uv -= mod(uv, vec2(pixel_clamp,pixel_clamp));
+
+	COLOR.rgb = textureLod(SCREEN_TEXTURE,uv,0.0).rgb;
+}
+"
+

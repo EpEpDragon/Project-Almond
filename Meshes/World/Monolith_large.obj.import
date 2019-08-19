@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Monolith_large.obj-5891bdc771518ead219e4db1cd0c5301.mesh"
+
+[deps]
+
+files=[ "res://.import/Monolith_large.obj-5891bdc771518ead219e4db1cd0c5301.mesh" ]
+
+source_file="res://Meshes/World/Monolith_large.obj"
+dest_files=[ "res://.import/Monolith_large.obj-5891bdc771518ead219e4db1cd0c5301.mesh", "res://.import/Monolith_large.obj-5891bdc771518ead219e4db1cd0c5301.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true
