@@ -1,19 +1,12 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://Meshes/World/Monolith_large.obj" type="ArrayMesh" id=1]
-[ext_resource path="res://Scripts/Alm_bearer.gd" type="Script" id=2]
-[ext_resource path="res://Meshes/Player/Alm_bearer.obj" type="ArrayMesh" id=3]
+[ext_resource path="res://Scripts/Alm_bearer.gd" type="Script" id=1]
+[ext_resource path="res://Meshes/Player/Alm_bearer.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://Meshes/World/Monolith_large.obj" type="ArrayMesh" id=3]
 [ext_resource path="res://Meshes/World/Monolith_small.obj" type="ArrayMesh" id=4]
 [ext_resource path="res://Pixelatorifier/Pixel_Material.tres" type="Material" id=5]
 [ext_resource path="res://Pixelatorifier/Pixel_Canvas_Setup.gd" type="Script" id=6]
 [ext_resource path="res://Scripts/Label.gd" type="Script" id=7]
-
-
-
-
-
-
-
 
 [sub_resource type="CapsuleShape" id=1]
 height = 1.36605
@@ -36,12 +29,41 @@ shader = SubResource( 3 )
 
 [node name="Spatial" type="Spatial"]
 
-[node name="Monolith1" type="MeshInstance" parent="."]
-transform = Transform( 2, 2.62268e-007, 1.74846e-007, -2.62268e-007, 2, 8.74228e-008, -1.74846e-007, -8.74228e-008, 2, 0.987381, 0.999999, -32.7075 )
-mesh = ExtResource( 1 )
+[node name="Player" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.04993, 0 )
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+script = ExtResource( 1 )
+
+[node name="Orthogonal" type="Camera" parent="Player"]
+transform = Transform( 1, 0, 0, 0, 0.642788, 0.766044, 0, -0.766044, 0.642788, 0, 41.0974, 32.6239 )
+projection = 1
+current = true
+size = 60.0
+far = 947.1
+
+[node name="Perspective" type="Camera" parent="Player"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-008, 1, 0, -1, -4.37114e-008, 0, 50, 0 )
+current = true
+far = 256.7
+
+[node name="CollisionShape" type="CollisionShape" parent="Player"]
+transform = Transform( 1, 0, 0, 0, 0.784921, 0, 0, 0, 1.00974, 0, -0.160047, -0.714077 )
+shape = SubResource( 1 )
+
+[node name="Alm_bearer" type="MeshInstance" parent="Player"]
+transform = Transform( 1.91069e-015, -4.37114e-008, 1, -1, -4.37114e-008, 0, 4.37114e-008, -1, -4.37114e-008, 0, 0, 0 )
+mesh = ExtResource( 2 )
 material/0 = null
 
-[node name="OmniLight" type="OmniLight" parent="Monolith1"]
+[node name="Light Well" type="MeshInstance" parent="."]
+editor/display_folded = true
+transform = Transform( 2, 2.62268e-007, 1.74846e-007, -2.62268e-007, 2, 8.74228e-008, -1.74846e-007, -8.74228e-008, 2, 0.987381, 0.999999, -32.7075 )
+mesh = ExtResource( 3 )
+material/0 = null
+
+[node name="OmniLight" type="OmniLight" parent="Light Well"]
 transform = Transform( 0.5, -6.55671e-008, -4.37114e-008, 6.55671e-008, 0.5, -2.18557e-008, 4.37114e-008, 2.18557e-008, 0.5, 0.072524, 3.52102, 0.864174 )
 light_color = Color( 1, 0.494118, 0, 1 )
 light_energy = 16.0
@@ -50,31 +72,6 @@ shadow_enabled = true
 omni_range = 68.8
 omni_attenuation = 0.574348
 omni_shadow_mode = 0
-
-[node name="RigidBody" type="RigidBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.04993, 0 )
-script = ExtResource( 2 )
-
-[node name="Orthogonal" type="Camera" parent="RigidBody"]
-transform = Transform( 1, 0, 0, 0, 0.642788, 0.766044, 0, -0.766044, 0.642788, 0, 41.0974, 32.6239 )
-projection = 1
-current = true
-size = 60.0
-far = 947.1
-
-[node name="Perspective" type="Camera" parent="RigidBody"]
-transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 27.7023, 21.8127 )
-current = true
-far = 256.7
-
-[node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
-transform = Transform( 1, 0, 0, 0, 0.784921, 0, 0, 0, 1.00974, 0, -0.160047, -0.714077 )
-shape = SubResource( 1 )
-
-[node name="Alm_bearer" type="MeshInstance" parent="RigidBody"]
-transform = Transform( 1.91069e-015, -4.37114e-008, 1, -1, -4.37114e-008, 0, 4.37114e-008, -1, -4.37114e-008, 0, 0, 0 )
-mesh = ExtResource( 3 )
-material/0 = null
 
 [node name="Monolith2" type="MeshInstance" parent="."]
 transform = Transform( 1, 1.31134e-007, 8.74228e-008, -1.31134e-007, 1, 4.37114e-008, -8.74228e-008, -4.37114e-008, 1, -10, 0, 0 )
@@ -106,26 +103,28 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -20 )
 mesh = ExtResource( 4 )
 material/0 = null
 
-[node name="StaticBody" type="StaticBody" parent="."]
+[node name="Floor" type="StaticBody" parent="."]
+editor/display_folded = true
 transform = Transform( 1.85116, 0, 0, 0, 1, 0, 0, 0, 1.87907, 3.37737, 0, 0.657561 )
 
-[node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
+[node name="MeshInstance" type="MeshInstance" parent="Floor"]
 transform = Transform( 50.0833, 0, 0, 0, 50.0833, 0, 0, 0, 50.0832, -0.029225, 0.0712891, -0.00039993 )
 mesh = SubResource( 2 )
 material/0 = SubResource( 4 )
 
-[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+[node name="CollisionShape" type="CollisionShape" parent="Floor"]
 transform = Transform( 50.0269, 0, 0, 0, 1, 0, 0, 0, 49.7103, 0, -0.988648, 0 )
 shape = SubResource( 5 )
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Pixelatorifier" type="ColorRect" parent="."]
+editor/display_folded = true
 material = ExtResource( 5 )
 anchor_right = 0.22
 margin_right = 797.72
 margin_bottom = 600.0
 script = ExtResource( 6 )
 
-[node name="HScrollBar" type="HScrollBar" parent="ColorRect"]
+[node name="HScrollBar" type="HScrollBar" parent="Pixelatorifier"]
 margin_left = 14.3759
 margin_top = 10.7048
 margin_right = 163.376
@@ -134,7 +133,7 @@ max_value = 0.02
 step = 0.001
 value = 0.003
 
-[node name="Label" type="Label" parent="ColorRect/HScrollBar"]
+[node name="Label" type="Label" parent="Pixelatorifier/HScrollBar"]
 margin_left = 160.0
 margin_top = 24.0
 margin_right = 270.0
