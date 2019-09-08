@@ -1,6 +1,6 @@
 extends RigidBody
 
-const MOVE_SPEED = 0.1
+const MOVE_SPEED = 10
 const SNAP = 1
 var ortho
 var persp

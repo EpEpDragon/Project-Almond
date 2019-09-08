@@ -14,7 +14,7 @@ void fragment()
 	vec2 offset = mod(pos, vec2(x,y));
 	
 	vec2 uv = SCREEN_UV;
-	uv -= offset; //FIX SHIFT AMOUNT
+	uv -= offset; 
 	uv -= mod(uv, vec2(x,y));
 
 	COLOR.rgb = textureLod(SCREEN_TEXTURE,uv,0.0).rgb;
