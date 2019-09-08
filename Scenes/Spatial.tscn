@@ -118,7 +118,6 @@ transform = Transform( 50.0269, 0, 0, 0, 1, 0, 0, 0, 49.7103, 0, -0.988648, 0 )
 shape = SubResource( 5 )
 
 [node name="Pixelatorifier" type="ColorRect" parent="."]
-editor/display_folded = true
 material = ExtResource( 6 )
 anchor_right = 0.22
 margin_right = 797.72
@@ -126,13 +125,13 @@ margin_bottom = 600.0
 script = ExtResource( 7 )
 
 [node name="HScrollBar" type="HScrollBar" parent="Pixelatorifier"]
-margin_left = 14.3759
+margin_left = 13.3759
 margin_top = 10.7048
-margin_right = 163.376
+margin_right = 162.376
 margin_bottom = 73.7048
-max_value = 0.02
+max_value = 0.05
 step = 0.001
-value = 0.003
+value = 0.03
 
 [node name="Label" type="Label" parent="Pixelatorifier/HScrollBar"]
 margin_left = 160.0
@@ -140,3 +139,4 @@ margin_top = 24.0
 margin_right = 270.0
 margin_bottom = 57.0
 script = ExtResource( 8 )
+

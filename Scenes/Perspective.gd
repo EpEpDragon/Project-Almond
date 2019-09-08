@@ -3,7 +3,7 @@ extends Camera
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-const MOVE_SPEED = 10
+const MOVE_SPEED = 30
 # Called when the node enters the scene tree for the first time.
 #func _ready():
 	#pass # Replace with function body.
