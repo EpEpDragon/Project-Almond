@@ -1,6 +1,7 @@
 extends RigidBody
 
-const MOVE_SPEED = 10
+const MOVE_SPEED = 0.1
+const SNAP = 1
 var ortho
 var persp
 
@@ -18,7 +19,7 @@ func _process(delta):
 		translate(Vector3(-MOVE_SPEED * delta,0,0))
 	if Input.is_action_pressed("right"):
 		translate(Vector3(MOVE_SPEED * delta,0,0))
-		
+
 	if Input.is_action_just_pressed("change_camera"):
 		if ortho.current == true:
 			persp.current = true

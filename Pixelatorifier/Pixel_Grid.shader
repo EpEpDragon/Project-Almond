@@ -12,12 +12,15 @@ void fragment()
 	vec2 offset = mod(pos, vec2(x,y));
 	vec2 uv = SCREEN_UV;
 	
-	vec2 muv = mod(uv, vec2(x, y));
-	
+
+	//-mod(uv,vec2(x,y))
 	COLOR.rgb = textureLod(SCREEN_TEXTURE,uv,0).rgb;
 
-	uv -= offset*10f;
-	muv = mod(uv, vec2(x, y));
+
+	uv.y -= offset.y;
+	uv.x += offset.x;
+	
+	vec2 muv = mod(uv, vec2(x, y));
 	if (muv.x <= 0.001 || muv.y <= 0.001)
 		COLOR.rgb = vec3(1,1,1);
 }
