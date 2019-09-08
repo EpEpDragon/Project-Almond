@@ -127,18 +127,31 @@ margin_bottom = 600.0
 script = ExtResource( 7 )
 
 [node name="HScrollBar" type="HScrollBar" parent="Pixelatorifier"]
-margin_left = 13.3759
-margin_top = 10.7048
-margin_right = 162.376
-margin_bottom = 73.7048
-max_value = 0.15
+margin_top = -0.440125
+margin_right = 104.0
+margin_bottom = 29.5599
+max_value = 0.02
 step = 0.001
-value = 0.03
+value = 0.007
 
 [node name="Label" type="Label" parent="Pixelatorifier/HScrollBar"]
-margin_left = 160.0
-margin_top = 24.0
-margin_right = 270.0
-margin_bottom = 57.0
+margin_left = 117.514
+margin_right = 227.514
+margin_bottom = 33.0
 script = ExtResource( 8 )
 
+[node name="CheckButton" type="CheckButton" parent="Pixelatorifier"]
+margin_left = -7.92227
+margin_top = 29.4885
+margin_right = 68.0777
+margin_bottom = 69.4885
+
+[node name="Label" type="Label" parent="Pixelatorifier/CheckButton"]
+margin_left = 70.8604
+margin_top = 13.2038
+margin_right = 132.86
+margin_bottom = 27.2038
+text = "Pixel Grid"
+
+[connection signal="value_changed" from="Pixelatorifier/HScrollBar" to="Pixelatorifier" method="_on_HScrollBar_value_changed"]
+[connection signal="toggled" from="Pixelatorifier/CheckButton" to="Pixelatorifier" method="_on_CheckButton_toggled"]

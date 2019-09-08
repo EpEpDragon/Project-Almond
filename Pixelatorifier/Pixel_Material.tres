@@ -4,6 +4,7 @@
 
 [resource]
 shader = ExtResource( 1 )
+shader_param/grid = false
 shader_param/pos = null
 shader_param/aspect_ratio = null
 shader_param/pixel_clamp = 0.004
