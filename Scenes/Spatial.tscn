@@ -40,7 +40,7 @@ script = ExtResource( 1 )
 transform = Transform( 1, 0, 0, 0, -4.37114e-008, 1, 0, -1, -4.37114e-008, 0, 50, 0 )
 projection = 1
 current = true
-size = 60.0
+size = 50.0
 far = 947.1
 script = ExtResource( 1 )
 
