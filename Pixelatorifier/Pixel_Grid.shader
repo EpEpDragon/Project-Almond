@@ -6,6 +6,11 @@ uniform vec2 pos = vec2(0,0); //Camera position divided by ortho camera size
 uniform float aspect_ratio = 1f; // X base, used to adgust pixel grid for aspect ratio
 uniform float pixel_clamp = 0.7; //Pixel grid step
 
+uniform vec4 color1 = vec4(1,0,1,1);
+uniform vec4 color2;
+uniform vec4 color3;
+uniform vec4 color4;
+uniform vec4 color5;
 void fragment() 
 {
 	float x = pixel_clamp / aspect_ratio; //Adjust pixel grid for aspect ratio
@@ -24,7 +29,34 @@ void fragment()
 	//Offset UV, has effect of snapping camera to pixel grid
 	uv.y += offset.y;
 	uv.x -= offset.x;
-	COLOR.rgb = textureLod(SCREEN_TEXTURE,uv,0).rgb;
+	vec4 color = textureLod(SCREEN_TEXTURE,uv,0);
+	vec4 use_color;
+	
+	float min_diff = distance(color, color1);
+	float current_diff = distance(color, color1);
+	use_color = color1;
+
+	current_diff = distance(color, color2);
+	if (current_diff < min_diff){
+		min_diff = current_diff;
+		use_color = color2;
+	}
+	current_diff = distance(color, color3);
+	if (current_diff < min_diff){
+		min_diff = current_diff;
+		use_color = color3;
+	}
+	current_diff = distance(color, color4);
+	if (current_diff < min_diff){
+		min_diff = current_diff;
+		use_color = color4;
+	}
+	current_diff = distance(color, color5);
+	if (current_diff < min_diff){
+		min_diff = current_diff;
+		use_color = color5;
+	}
+	COLOR = use_color;
 	
 	//Draw pixel grid
 	if (grid)
