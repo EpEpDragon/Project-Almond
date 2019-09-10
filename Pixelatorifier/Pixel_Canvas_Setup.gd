@@ -14,6 +14,7 @@ func _ready():
 	for i in color_palette.size():
 		get_material().set_shader_param(str("color", i+1), color_palette[i])
 		print(color_palette[i])
+		
 func _process(delta):
 	margin_right = get_viewport_rect().size.x
 	margin_bottom = get_viewport_rect().size.y
