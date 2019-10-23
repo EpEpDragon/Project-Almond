@@ -28,8 +28,9 @@ void fragment()
 	uv -= mod(uv,vec2(x,y));
 	
 	//Offset UV, has effect of snapping camera to pixel grid
-	uv.y += offset.y;
-	uv.x -= offset.x;
+//	uv.y += offset.y;
+//	uv.x -= offset.x;
+	
 	vec4 color = textureLod(SCREEN_TEXTURE,uv,0);
 	vec4 use_color;
 	
