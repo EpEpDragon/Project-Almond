@@ -1,7 +1,17 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=2]
 
-[ext_resource path="res://Pixelatorifier/Pixel_Shader.tres" type="Shader" id=1]
+[ext_resource path="res://Pixelatorifier/Pixel_Grid.shader" type="Shader" id=1]
 
 [resource]
 shader = ExtResource( 1 )
+shader_param/grid = false
+shader_param/pos = Vector2( 0, 0 )
+shader_param/aspect_ratio = 1.0
 shader_param/pixel_clamp = 0.004
+shader_param/color1 = null
+shader_param/color2 = null
+shader_param/color3 = null
+shader_param/color4 = null
+shader_param/color5 = null
+shader_param/color6 = null
+

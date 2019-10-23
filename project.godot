@@ -19,6 +19,11 @@ config/name="Project_Almond"
 run/main_scene="res://Scenes/Spatial.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=1000
+window/size/height=1000
+
 [input]
 
 forward={
@@ -86,4 +91,5 @@ camRight={
 
 [rendering]
 
+quality/2d/use_pixel_snap=true
 environment/default_environment="res://Scenes/default_env.tres"
