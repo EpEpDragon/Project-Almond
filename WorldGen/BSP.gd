@@ -1,14 +1,14 @@
 extends Node2D 
 var world_root = Vector2(0,0)
-var world_size = Vector2(1900,1400)
-var max_room_size = 190000;
+var world_size = Vector2(1400,1400)
+var max_room_size = 100000;
 var world = []
 var rand = RandomNumberGenerator.new()
 var chunkDraw = 0;
 var vec1 = Vector2(1,1)
 var tree_size = 0
 
-var drawMode = ["type", "bsp"]
+var drawMode = ["type", ""]
 
 func _ready():
 	
@@ -101,7 +101,7 @@ func assign_nodes(node : int):
 			assign_nodes(node*2+2)
 			children += 1
 	if children == 0:
-		if rand.randf() < 0.5:
+		if rand.randf() < 0.7:
 			world[node].type = "cave"
 		elif rand.randf() < 0.8:
 			world[node].type = "fill"
