@@ -6,9 +6,45 @@
 [node name="Node2D" type="Node2D"]
 
 [node name="BSP" type="Node2D" parent="."]
-visible = false
+position = Vector2( 0, 50 )
 script = ExtResource( 1 )
 
 [node name="CellularAutomata" type="Node2D" parent="."]
+position = Vector2( 0, 50 )
 script = ExtResource( 2 )
 
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+margin_right = 73.0
+margin_bottom = 44.0
+
+[node name="Button2" type="Button" parent="HBoxContainer/VBoxContainer"]
+margin_right = 73.0
+margin_bottom = 20.0
+text = "New cave"
+
+[node name="Button" type="Button" parent="HBoxContainer/VBoxContainer"]
+margin_top = 24.0
+margin_right = 73.0
+margin_bottom = 44.0
+text = "Smooth"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+margin_left = 77.0
+margin_right = 185.0
+margin_bottom = 44.0
+
+[node name="DrawAutomata" type="Button" parent="HBoxContainer/VBoxContainer2"]
+margin_right = 108.0
+margin_bottom = 20.0
+text = "Draw automata"
+
+[node name="Button2" type="Button" parent="HBoxContainer/VBoxContainer2"]
+margin_top = 24.0
+margin_right = 108.0
+margin_bottom = 44.0
+
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Button2" to="CellularAutomata" method="_on_Button2_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Button" to="CellularAutomata" method="_on_Button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer2/DrawAutomata" to="CellularAutomata" method="_on_DrawAutomata_pressed"]

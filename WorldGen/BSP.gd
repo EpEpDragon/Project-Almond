@@ -1,6 +1,6 @@
 extends Node2D 
 var world_root = Vector2(0,0)
-var world_size = Vector2(1400,1400)
+var worldSize = Vector2(1200,1000)
 var max_room_size = 100000;
 var world = []
 var rand = RandomNumberGenerator.new()
@@ -23,11 +23,11 @@ func build():
 	#Set world root node
 	world[0] = {
 		origin = world_root,
-		size = world_size,
+		size = worldSize,
 		type = "overworld"
 		}
 	
-	bsp(world_root, world_size, 0, 0)
+	bsp(world_root, worldSize, 0, 0)
 	assign_nodes(0)
 	return
 
@@ -57,18 +57,18 @@ func bsp(origin : Vector2, size : Vector2, depth : int, node : int):
 		if (fmod(depth, 2) == 0):
 			#Vertical split
 			left_origin = origin
-			left_size = size - Vector2(size.x*(1-split),0)
+			left_size = size - Vector2(size.x*(1-split),0).snapped(Vector2(10,10))
 			
-			right_origin = origin + Vector2(size.x*split,0)
-			right_size = size - Vector2(size.x*split,0)
+			right_origin = origin + Vector2(size.x*split,0).snapped(Vector2(10,10))
+			right_size = size - Vector2(size.x*split,0).snapped(Vector2(10,10))
 			
 		else:
 			#Horizontal split, Left is top, Right is bottom
 			left_origin = origin
-			left_size = size - Vector2(0,size.y*(1-split))
+			left_size = size - Vector2(0,size.y*(1-split)).snapped(Vector2(10,10))
 			
-			right_origin = origin + Vector2(0,size.y*split)
-			right_size = size - Vector2(0,size.y*split)
+			right_origin = origin + Vector2(0,size.y*split).snapped(Vector2(10,10))
+			right_size = size - Vector2(0,size.y*split).snapped(Vector2(10,10))
 			
 		#Increase size
 		if world.size() < node*2+3:
@@ -101,7 +101,7 @@ func assign_nodes(node : int):
 			assign_nodes(node*2+2)
 			children += 1
 	if children == 0:
-		if rand.randf() < 0.7:
+		if rand.randf() < 0.6:
 			world[node].type = "cave"
 		elif rand.randf() < 0.8:
 			world[node].type = "fill"
