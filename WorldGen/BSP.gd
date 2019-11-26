@@ -1,20 +1,15 @@
 extends Node2D 
+
+onready var worldSize = $"..".worldSize
+onready var max_room_size = $"..".max_room_size
+
 var world_root = Vector2(0,0)
-var worldSize = Vector2(1200,1000)
-var max_room_size = 100000;
 var world = []
-var rand = RandomNumberGenerator.new()
-var chunkDraw = 0;
-var vec1 = Vector2(1,1)
+var rand : RandomNumberGenerator
 var tree_size = 0
 
-var drawMode = ["type", ""]
-
 func _ready():
-	
-	rand.seed = 666
-	build()
-	print("fin")
+	rand = $"..".rand
 
 func build():
 	world.resize(1)
@@ -108,40 +103,3 @@ func assign_nodes(node : int):
 		else:
 			world[node].type = "structure"
 	return
-
-func _input(event):
-	if event.is_action_released("drawNextChunk"):
-		chunkDraw += 1
-		update()
-	if event.is_action_released("drawPreviousChunk"):
-		chunkDraw -= 1
-		update()
-	if event.is_action_released("newMap"):
-		build()
-		update()
-		print("NBew")
-	if event.is_action_released("drawBSP"):
-		if drawMode[1] == "bsp":
-			drawMode[1] = "0"
-		else:
-			drawMode[1] = "bsp"
-		update()
-	if event.is_action_released("drawZone"):
-		if drawMode[0] == "type":
-			drawMode[0] = "0"
-		else:
-			drawMode[0] = "type"
-		update()
-
-func _draw():
-	for chunk in world:
-		if chunk:
-			if drawMode[0] == "type":
-				if chunk.type == "cave":
-					draw_rect(Rect2(chunk.origin + vec1, chunk.size + vec1), Color(0,0,1))
-				elif chunk.type == "structure":
-					draw_rect(Rect2(chunk.origin + vec1, chunk.size + vec1), Color(0,1,0))
-				else:
-					draw_rect(Rect2(chunk.origin + vec1, chunk.size + vec1), Color(0,0,0))
-			if chunk.type != "chunk" && drawMode[1] == "bsp":
-				draw_rect(Rect2(chunk.origin + vec1, chunk.size + vec1), Color(1,0,0), false)

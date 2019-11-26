@@ -1,26 +1,22 @@
 extends Node2D
 
-var tile = Vector2(10,10)
+onready var tile = $"..".tileSize
+onready var BSP = $"../BSP"
+
+export var fillChance = 0.56
 var worldX
 var worldY
 var rand : RandomNumberGenerator
 var worldCurrent = []
-export var fillChance = 0.5
-var BSP
-var vec1 = Vector2(1,1)
-var draw
 
 func _ready():
-	BSP = get_tree().get_root().get_node("Node2D/BSP")
-	worldX = BSP.worldSize.x/10
-	worldY = BSP.worldSize.y/10
-	
-	rand = RandomNumberGenerator.new()
-	rand.seed = 45645
-	prepWorld()
+	rand = $"..".rand
 
 func prepWorld():
 	#World current
+	worldX = BSP.worldSize.x/tile.x
+	worldY = BSP.worldSize.y/tile.y
+	
 	worldCurrent.resize(worldY)
 	for y in worldY:
 		worldCurrent[y] = []
@@ -32,15 +28,12 @@ func randomizeZones(node : int):
 	var treeSize = BSP.tree_size
 	var world = BSP.world
 
-	var children = 0;
 	if node*2+1 <= treeSize: 
 		if world[node*2+1]:
 			randomizeZones(node*2+1)
-			children += 1
 	if node*2+2 <= treeSize: 
 		if world[node*2+2]:
 			randomizeZones(node*2+2)
-			children += 1
 	if world[node].type == "cave":
 		randomizeRect(world[node].origin, world[node].size)
 	return
@@ -95,30 +88,3 @@ func smooth(var iterations : int):
 			worldCurrent[y][x] = 1
 		elif neighbours < 4:
 			worldCurrent[y][x] = 0
-
-func _draw():
-	if draw:
-		for y in worldY:
-			for x in worldX:
-				if worldCurrent[y][x] == 1:
-					draw_rect(Rect2(Vector2(x*tile.x, y*tile.y) + vec1,tile + vec1), Color(0,0,0))
-				else:
-					draw_rect(Rect2(Vector2(x*tile.x, y*tile.y) + vec1,tile+  vec1), Color(1,1,1))
-	draw_line(Vector2(1,1), Vector2(121,1), Color(1,1,1))
-func _on_Button_pressed():
-	print("smooth") 
-	smooth(10000)
-	update()
-
-func _on_Button2_pressed():
-	print("Cave gen")
-	randomizeZones(0)
-	#smooth(300000)
-	update()
-
-func _on_DrawAutomata_pressed():
-	if draw == false:
-		draw = true
-	else:
-		draw = false
-	update()
