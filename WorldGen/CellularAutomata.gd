@@ -7,7 +7,6 @@ export var fillChance = 0.56
 var worldX
 var worldY
 var rand : RandomNumberGenerator
-var worldCurrent = []
 
 func _ready():
 	rand = $"..".rand
@@ -17,12 +16,12 @@ func prepWorld():
 	worldX = BSP.worldSize.x/tile.x
 	worldY = BSP.worldSize.y/tile.y
 	
-	worldCurrent.resize(worldY)
+	$"..".world.resize(worldY)
 	for y in worldY:
-		worldCurrent[y] = []
-		worldCurrent[y].resize(worldX)
+		$"..".world[y] = []
+		$"..".world[y].resize(worldX)
 		for x in worldX:
-			worldCurrent[y][x] = 1
+			$"..".world[y][x] = 1
 
 func randomizeZones(node : int):
 	var treeSize = BSP.tree_size
@@ -49,11 +48,11 @@ func randomizeRect(origin : Vector2, size : Vector2):
 	while y < yOrigin + ySize:
 		while x < xOrigin + xSize:
 			if x == 0 || y == 0 || x == worldX-1 || y == worldY-1:
-				worldCurrent[y][x] = 1
+				$"..".world[y][x] = 1
 			elif rand.randf() > fillChance:
-				worldCurrent[y][x] = 1
+				$"..".world[y][x] = 1
 			else:
-				worldCurrent[y][x] = 0
+				$"..".world[y][x] = 0
 			x += 1
 		x = xOrigin
 		y += 1
@@ -68,7 +67,7 @@ func neighbourCount(var x, var y):
 			if neighbourX < 0 || neighbourY < 0 || neighbourX >= worldX || neighbourY >= worldY:
 				count += 1
 			elif (neighbourX != x || neighbourY != y):
-				if worldCurrent[neighbourY][neighbourX]:
+				if $"..".world[neighbourY][neighbourX]:
 					count += 1
 			neighbourY += 1
 		neighbourX += 1
@@ -85,6 +84,6 @@ func smooth(var iterations : int):
 		var neighbours = neighbourCount(x,y)
 
 		if neighbours > 4:
-			worldCurrent[y][x] = 1
+			$"..".world[y][x] = 1
 		elif neighbours < 4:
-			worldCurrent[y][x] = 0
+			$"..".world[y][x] = 0

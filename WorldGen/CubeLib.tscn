@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=2]
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 0.478431, 0.356863, 0.356863, 1 )
+
+[sub_resource type="CubeMesh" id=1]
+material = SubResource( 5 )
+
+[sub_resource type="SpatialMaterial" id=15]
+albedo_color = Color( 0.317647, 0.247059, 0.247059, 1 )
+
+[sub_resource type="CubeMesh" id=16]
+material = SubResource( 15 )
+
+[sub_resource type="SpatialMaterial" id=8]
+albedo_color = Color( 0.792157, 0.141176, 0.141176, 1 )
+
+[sub_resource type="CubeMesh" id=4]
+material = SubResource( 8 )
+
+[node name="Spatial" type="Spatial"]
+
+[node name="FloorCave" type="MeshInstance" parent="."]
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="WallCave" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 2, 0, 0, 0, 1, 2.68846, 0, 0 )
+mesh = SubResource( 16 )
+material/0 = null
+
+[node name="FloorStructure" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.49788, 0, 0 )
+mesh = SubResource( 4 )
+material/0 = null
+
